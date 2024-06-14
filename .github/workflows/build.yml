@@ -1,0 +1,105 @@
+name: CI Build
+
+on:
+  push:
+    branches:
+      - '**'
+  pull_request:
+    branches:
+      - '**'
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # windows dynamic
+          - os: windows-latest
+            preset: windows-dynamic-x64-debug
+          - os: windows-latest
+            preset: windows-dynamic-x64-release
+          - os: windows-latest
+            preset: windows-dynamic-x86-debug
+          - os: windows-latest
+            preset: windows-dynamic-x86-release
+
+          # windows static
+          - os: windows-latest
+            preset: windows-static-x64-debug
+          - os: windows-latest
+            preset: windows-static-x64-release
+          - os: windows-latest
+            preset: windows-static-x86-debug
+          - os: windows-latest
+            preset: windows-static-x86-release
+
+          #linux dynamic
+          - os: ubuntu-latest
+            preset: linux-dynamic-x64-debug"
+          - os: ubuntu-latest
+            preset: linux-dynamic-x64-release
+          #- os: ubuntu-latest
+          #  preset: linux-dynamic-x86-debug
+          #- os: ubuntu-latest
+          #  preset: linux-dynamic-x86-release
+
+          #linux static
+          - os: ubuntu-latest
+            preset: linux-static-x64-debug
+          - os: ubuntu-latest
+            preset: linux-static-x64-release
+          - os: ubuntu-latest
+            preset: linux-static-x86-debug
+          - os: ubuntu-latest
+            preset: linux-static-x86-release
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+      with:
+        submodules: true
+
+    - name: Install Build Dependencies (Ubuntu)
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        sudo apt-get install -y software-properties-common
+        sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+        sudo apt-get install -y g++-13
+        sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-13 100
+        sudo apt-get install -y \
+        ninja-build \
+
+    - name: Install Build Dependencies (Windows)
+      if: matrix.os == 'windows-latest'
+      run: |
+        choco install -y `
+        ninja
+
+    - name: Install CMake
+      uses: jwlawson/actions-setup-cmake@v2
+
+    - name: Setup vcpkg
+      uses: lukka/run-vcpkg@v11
+      with:
+        vcpkgDirectory: ${{ github.workspace }}/vcpkg
+        doNotCache: false
+        runVcpkgInstall: false
+
+    - name: Invoke Developer Command Prompt for VS
+      if: matrix.os == 'windows-latest'
+      uses: ilammy/msvc-dev-cmd@v1
+
+    - name: CMake Configure, Build and Install
+      env:
+        VCPKG_ROOT: ${{ github.workspace }}/vcpkg
+      run: |
+        cmake --preset ${{ matrix.preset }}
+        cmake --build --preset ${{ matrix.preset }} --target install
+
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{ matrix.preset }}
+        path: ${{ matrix.preset }}
