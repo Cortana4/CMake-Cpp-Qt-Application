@@ -35,7 +35,7 @@ jobs:
           - os: windows-latest
             preset: windows-static-x86-release
 
-          #linux dynamic
+          # linux dynamic
           - os: ubuntu-latest
             preset: linux-dynamic-x64-debug"
           - os: ubuntu-latest

@@ -1,7 +1,6 @@
 ﻿{
     "version": 3,
     "configurePresets": [
-        // OS base
         {
             "name": "base",
             "hidden": true,
@@ -12,7 +11,6 @@
                 //"VCPKG_OVERLAY_TRIPLETS": ""
             }
         },
-        // OS base windows
         {
             "name": "windows",
             "hidden": true,
@@ -31,7 +29,6 @@
                 "rhs": "Windows"
             }
         },
-        // OS base linux
         {
             "name": "linux",
             "hidden": true,
@@ -81,7 +78,6 @@
                 }
             }
         },
-        // config base
         {
             "name": "static",
             "hidden": true,
@@ -126,7 +122,6 @@
                 "CMAKE_BUILD_TYPE": "Release"
             }
         },
-        // config base dynamic
         {
             "name": "config-dynamic-x64-debug",
             "hidden": true,
@@ -155,7 +150,6 @@
             "binaryDir": "${sourceDir}/build/dynamic-x86-release",
             "installDir": "${sourceDir}/bin/dynamic-x86-release"
         },
-        // config base static
         {
             "name": "config-static-x64-debug",
             "hidden": true,
@@ -184,7 +178,6 @@
             "binaryDir": "${sourceDir}/build/static-x86-release",
             "installDir": "${sourceDir}/bin/static-x86-release"
         },
-        // triplet base windows
         {
             "name": "triplet-windows-dynamic-x64",
             "hidden": true,
@@ -213,7 +206,6 @@
                 "VCPKG_TARGET_TRIPLET": "x86-windows-static"
             }
         },
-        // triplet base linux
         {
             "name": "triplet-linux-dynamic-x64",
             "hidden": true,
@@ -243,7 +235,6 @@
                 "VCPKG_TARGET_TRIPLET": "x86-linux"
             }
         },
-        // config windows dynamic
         {
             "name": "windows-dynamic-x64-debug",
             "inherits": [ "windows", "config-dynamic-x64-debug", "triplet-windows-dynamic-x64" ]
@@ -260,7 +251,6 @@
             "name": "windows-dynamic-x86-release",
             "inherits": [ "windows", "config-dynamic-x86-release", "triplet-windows-dynamic-x86" ]
         },
-        // config windows static
         {
             "name": "windows-static-x64-debug",
             "inherits": [ "windows", "config-static-x64-debug", "triplet-windows-static-x64" ]
@@ -277,7 +267,6 @@
             "name": "windows-static-x86-release",
             "inherits": [ "windows", "config-static-x86-release", "triplet-windows-static-x86" ]
         },
-        // config linux dynamic
         {
             "name": "linux-dynamic-x64-debug",
             "inherits": [ "linux", "config-dynamic-x64-debug", "triplet-linux-dynamic-x64" ]
@@ -296,7 +285,6 @@
             "name": "linux-dynamic-x86-release",
             "inherits": [ "linux", "config-dynamic-x86-release", "triplet-linux-dynamic-x86" ]
         },
-        // config linux static
         {
             "name": "linux-static-x64-debug",
             "inherits": [ "linux", "config-static-x64-debug", "triplet-linux-static-x64" ]
@@ -333,7 +321,6 @@
                 "rhs": "Linux"
             }
         },
-        // build windows dynamic
         {
             "name": "windows-dynamic-x64-debug",
             "configurePreset": "windows-dynamic-x64-debug",
@@ -354,7 +341,6 @@
             "configurePreset": "windows-dynamic-x86-release",
             "inherits": "windows"
         },
-        // build windows static
         {
             "name": "windows-static-x64-debug",
             "configurePreset": "windows-static-x64-debug",
@@ -375,7 +361,6 @@
             "configurePreset": "windows-static-x86-release",
             "inherits": "windows"
         },
-        // build linux dynamic
         {
             "name": "linux-dynamic-x64-debug",
             "configurePreset": "linux-dynamic-x64-debug",
@@ -398,7 +383,6 @@
             "configurePreset": "linux-dynamic-x86-release",
             "inherits": "linux"
         },
-        // build linux static
         {
             "name": "linux-static-x64-debug",
             "configurePreset": "linux-static-x64-debug",
