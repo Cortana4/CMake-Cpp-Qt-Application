@@ -37,7 +37,7 @@ jobs:
 
           # linux dynamic
           - os: ubuntu-latest
-            preset: linux-dynamic-x64-debug"
+            preset: linux-dynamic-x64-debug
           - os: ubuntu-latest
             preset: linux-dynamic-x64-release
           #- os: ubuntu-latest
