@@ -126,57 +126,57 @@
             "name": "config-dynamic-x64-debug",
             "hidden": true,
             "inherits": [ "dynamic", "x64", "debug" ],
-            "binaryDir": "${sourceDir}/build/dynamic-x64-debug",
-            "installDir": "${sourceDir}/bin/dynamic-x64-debug"
+            "binaryDir": "${sourceDir}/build/x64/Debug",
+            "installDir": "${sourceDir}/bin/x64/Debug"
         },
         {
             "name": "config-dynamic-x64-release",
             "hidden": true,
             "inherits": [ "dynamic", "x64", "release" ],
-            "binaryDir": "${sourceDir}/build/dynamic-x64-release",
-            "installDir": "${sourceDir}/bin/dynamic-x64-release"
+            "binaryDir": "${sourceDir}/build/x64/Release",
+            "installDir": "${sourceDir}/bin/x64/Release"
         },
         {
             "name": "config-dynamic-x86-debug",
             "hidden": true,
             "inherits": [ "dynamic", "x86", "debug" ],
-            "binaryDir": "${sourceDir}/build/dynamic-x86-debug",
-            "installDir": "${sourceDir}/bin/dynamic-x86-debug"
+            "binaryDir": "${sourceDir}/build/x86/Debug",
+            "installDir": "${sourceDir}/bin/x86/Debug"
         },
         {
             "name": "config-dynamic-x86-release",
             "hidden": true,
             "inherits": [ "dynamic", "x86", "release" ],
-            "binaryDir": "${sourceDir}/build/dynamic-x86-release",
-            "installDir": "${sourceDir}/bin/dynamic-x86-release"
+            "binaryDir": "${sourceDir}/build/x86/Release",
+            "installDir": "${sourceDir}/bin/x86/Release"
         },
         {
             "name": "config-static-x64-debug",
             "hidden": true,
             "inherits": [ "static", "x64", "debug" ],
-            "binaryDir": "${sourceDir}/build/static-x64-debug",
-            "installDir": "${sourceDir}/bin/static-x64-debug"
+            "binaryDir": "${sourceDir}/build/x64/Debug",
+            "installDir": "${sourceDir}/bin/x64/Debug"
         },
         {
             "name": "config-static-x64-release",
             "hidden": true,
             "inherits": [ "static", "x64", "release" ],
-            "binaryDir": "${sourceDir}/build/static-x64-release",
-            "installDir": "${sourceDir}/bin/static-x64-release"
+            "binaryDir": "${sourceDir}/build/x64/Release",
+            "installDir": "${sourceDir}/bin/x64/Release"
         },
         {
             "name": "config-static-x86-debug",
             "hidden": true,
             "inherits": [ "static", "x86", "debug" ],
-            "binaryDir": "${sourceDir}/build/static-x86-debug",
-            "installDir": "${sourceDir}/bin/static-x86-debug"
+            "binaryDir": "${sourceDir}/build/x86/Debug",
+            "installDir": "${sourceDir}/bin/x86/Debug"
         },
         {
             "name": "config-static-x86-release",
             "hidden": true,
             "inherits": [ "static", "x86", "release" ],
-            "binaryDir": "${sourceDir}/build/static-x86-release",
-            "installDir": "${sourceDir}/bin/static-x86-release"
+            "binaryDir": "${sourceDir}/build/x86/Release",
+            "installDir": "${sourceDir}/bin/x86/Release"
         },
         {
             "name": "triplet-windows-dynamic-x64",
@@ -237,69 +237,115 @@
         },
         {
             "name": "windows-dynamic-x64-debug",
+            "hidden": true,
             "inherits": [ "windows", "config-dynamic-x64-debug", "triplet-windows-dynamic-x64" ]
         },
         {
             "name": "windows-dynamic-x64-release",
+            "hidden": true,
             "inherits": [ "windows", "config-dynamic-x64-release", "triplet-windows-dynamic-x64" ]
         },
         {
             "name": "windows-dynamic-x86-debug",
+            "hidden": true,
             "inherits": [ "windows", "config-dynamic-x86-debug", "triplet-windows-dynamic-x86" ]
         },
         {
             "name": "windows-dynamic-x86-release",
+            "hidden": true,
             "inherits": [ "windows", "config-dynamic-x86-release", "triplet-windows-dynamic-x86" ]
         },
         {
             "name": "windows-static-x64-debug",
+            "hidden": true,
             "inherits": [ "windows", "config-static-x64-debug", "triplet-windows-static-x64" ]
         },
         {
             "name": "windows-static-x64-release",
+            "hidden": true,
             "inherits": [ "windows", "config-static-x64-release", "triplet-windows-static-x64" ]
         },
         {
             "name": "windows-static-x86-debug",
+            "hidden": true,
             "inherits": [ "windows", "config-static-x86-debug", "triplet-windows-static-x86" ]
         },
         {
             "name": "windows-static-x86-release",
+            "hidden": true,
             "inherits": [ "windows", "config-static-x86-release", "triplet-windows-static-x86" ]
         },
         {
             "name": "linux-dynamic-x64-debug",
+            "hidden": true,
             "inherits": [ "linux", "config-dynamic-x64-debug", "triplet-linux-dynamic-x64" ]
         },
         {
             "name": "linux-dynamic-x64-release",
+            "hidden": true,
             "inherits": [ "linux", "config-dynamic-x64-release", "triplet-linux-dynamic-x64" ]
         },
         {
-            "hidden": true,
             "name": "linux-dynamic-x86-debug",
+            "hidden": true,
             "inherits": [ "linux", "config-dynamic-x86-debug", "triplet-linux-dynamic-x86" ]
         },
         {
-            "hidden": true,
             "name": "linux-dynamic-x86-release",
+            "hidden": true,
             "inherits": [ "linux", "config-dynamic-x86-release", "triplet-linux-dynamic-x86" ]
         },
         {
             "name": "linux-static-x64-debug",
+            "hidden": true,
             "inherits": [ "linux", "config-static-x64-debug", "triplet-linux-static-x64" ]
         },
         {
             "name": "linux-static-x64-release",
+            "hidden": true,
             "inherits": [ "linux", "config-static-x64-release", "triplet-linux-static-x64" ]
         },
         {
             "name": "linux-static-x86-debug",
+            "hidden": true,
             "inherits": [ "linux", "config-static-x86-debug", "triplet-linux-static-x86" ]
         },
         {
             "name": "linux-static-x86-release",
+            "hidden": true,
             "inherits": [ "linux", "config-static-x86-release", "triplet-linux-static-x86" ]
+        },
+        {
+            "name": "windows-x64-debug",
+            "inherits": "windows-dynamic-x64-debug"
+        },
+        {
+            "name": "windows-x64-release",
+            "inherits": "windows-dynamic-x64-release"
+        },
+        {
+            "name": "windows-x86-debug",
+            "inherits": "windows-dynamic-x86-debug"
+        },
+        {
+            "name": "windows-x86-release",
+            "inherits": "windows-dynamic-x86-release"
+        },
+        {
+            "name": "linux-x64-debug",
+            "inherits": "linux-dynamic-x64-debug"
+        },
+        {
+            "name": "linux-x64-release",
+            "inherits": "linux-dynamic-x64-release"
+        },
+        {
+            "name": "linux-x86-debug",
+            "inherits": "linux-dynamic-x86-debug"
+        },
+        {
+            "name": "linux-x86-release",
+            "inherits": "linux-dynamic-x86-release"
         }
     ],
     "buildPresets": [
@@ -322,85 +368,43 @@
             }
         },
         {
-            "name": "windows-dynamic-x64-debug",
-            "configurePreset": "windows-dynamic-x64-debug",
+            "name": "windows-x64-debug",
+            "configurePreset": "windows-x64-debug",
             "inherits": "windows"
         },
         {
-            "name": "windows-dynamic-x64-release",
-            "configurePreset": "windows-dynamic-x64-release",
+            "name": "windows-x64-release",
+            "configurePreset": "windows-x64-release",
             "inherits": "windows"
         },
         {
-            "name": "windows-dynamic-x86-debug",
-            "configurePreset": "windows-dynamic-x86-debug",
+            "name": "windows-x86-debug",
+            "configurePreset": "windows-x86-debug",
             "inherits": "windows"
         },
         {
-            "name": "windows-dynamic-x86-release",
-            "configurePreset": "windows-dynamic-x86-release",
+            "name": "windows-x86-release",
+            "configurePreset": "windows-x86-release",
             "inherits": "windows"
         },
         {
-            "name": "windows-static-x64-debug",
-            "configurePreset": "windows-static-x64-debug",
-            "inherits": "windows"
-        },
-        {
-            "name": "windows-static-x64-release",
-            "configurePreset": "windows-static-x64-release",
-            "inherits": "windows"
-        },
-        {
-            "name": "windows-static-x86-debug",
-            "configurePreset": "windows-static-x86-debug",
-            "inherits": "windows"
-        },
-        {
-            "name": "windows-static-x86-release",
-            "configurePreset": "windows-static-x86-release",
-            "inherits": "windows"
-        },
-        {
-            "name": "linux-dynamic-x64-debug",
-            "configurePreset": "linux-dynamic-x64-debug",
+            "name": "linux-x64-debug",
+            "configurePreset": "linux-x64-debug",
             "inherits": "linux"
         },
         {
-            "name": "linux-dynamic-x64-release",
-            "configurePreset": "linux-dynamic-x64-release",
+            "name": "linux-x64-release",
+            "configurePreset": "linux-x64-release",
             "inherits": "linux"
         },
         {
-            "hidden": true,
-            "name": "linux-dynamic-x86-debug",
-            "configurePreset": "linux-dynamic-x86-debug",
+            "name": "linux-x86-debug",
+            "configurePreset": "linux-x86-debug",
             "inherits": "linux"
         },
         {
-            "hidden": true,
-            "name": "linux-dynamic-x86-release",
-            "configurePreset": "linux-dynamic-x86-release",
-            "inherits": "linux"
-        },
-        {
-            "name": "linux-static-x64-debug",
-            "configurePreset": "linux-static-x64-debug",
-            "inherits": "linux"
-        },
-        {
-            "name": "linux-static-x64-release",
-            "configurePreset": "linux-static-x64-release",
-            "inherits": "linux"
-        },
-        {
-            "name": "linux-static-x86-debug",
-            "configurePreset": "linux-static-x86-debug",
-            "inherits": "linux"
-        },
-        {
-            "name": "linux-static-x86-release",
-            "configurePreset": "linux-static-x86-release",
+            "name": "linux-x86-release",
+            "configurePreset": "linux-x86-release",
             "inherits": "linux"
         }
     ]
