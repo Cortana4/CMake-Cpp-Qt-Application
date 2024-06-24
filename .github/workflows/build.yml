@@ -19,6 +19,7 @@ jobs:
           - os: windows-latest
             preset: windows-x64-debug
             path: bin/x64/Debug
+            path2: build/x64/Debug
 
           #- os: windows-latest
           #  preset: windows-x64-release
@@ -36,6 +37,7 @@ jobs:
           - os: ubuntu-latest
             preset: linux-x64-debug
             path: bin/x64/Debug
+            path2: build/x64/Debug
 
           #- os: ubuntu-latest
           #  preset: linux-x64-release
@@ -110,6 +112,13 @@ jobs:
       run: |
         cmake --preset ${{ matrix.preset }}
         cmake --build --preset ${{ matrix.preset }} --target install
+
+    - name: Upload vcpkg logs
+      if: failure()
+      uses: actions/upload-artifact@v2
+      with:
+        name: vcpkg-logs
+        path: ${{ matrix.path2 }}
 
     - name: Upload Artifacts
       uses: actions/upload-artifact@v2
