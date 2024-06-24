@@ -333,19 +333,19 @@
         },
         {
             "name": "linux-x64-debug",
-            "inherits": "linux-dynamic-x64-debug"
+            "inherits": "linux-static-x64-debug"
         },
         {
             "name": "linux-x64-release",
-            "inherits": "linux-dynamic-x64-release"
+            "inherits": "linux-static-x64-release"
         },
         {
             "name": "linux-x86-debug",
-            "inherits": "linux-dynamic-x86-debug"
+            "inherits": "linux-static-x86-debug"
         },
         {
             "name": "linux-x86-release",
-            "inherits": "linux-dynamic-x86-release"
+            "inherits": "linux-static-x86-release"
         }
     ],
     "buildPresets": [

@@ -55,6 +55,12 @@ jobs:
       with:
         submodules: false
 
+    - name: Install Build Dependencies (Windows)
+      if: runner.os == 'Windows'
+      run: |
+        choco install -y `
+        ninja
+
     - name: Install Build Dependencies (Linux)
       if: runner.os == 'Linux'
       run: |
@@ -65,27 +71,26 @@ jobs:
         sudo apt-get install -y \
         ninja-build \
         libxi-dev \
-        libxtst-dev
-
-    - name: Install Build Dependencies (Windows)
-      if: runner.os == 'Windows'
-      run: |
-        choco install -y `
-        ninja
+        libxtst-dev \
+        libx11-xcb-dev \
+        libgl1-mesa-dev \
+        libxrender-dev \
+        libxkbcommon-dev \
+        libxkbcommon-x11-dev
 
     - name: Install CMake
       uses: jwlawson/actions-setup-cmake@v2
 
     # due to path length limitations on windows, the vcpkg path must be as short
     # as possible, otherwise the build of dependencies (especially qt) might fail
-    - name: Set VCPKG_ROOT (Windows)
+    - name: Set VCPKG_ROOT Environment Variable (Windows)
       if: runner.os == 'Windows'
       run: |
         $drive = Split-Path -Path ${{ github.workspace }} -Qualifier
         echo "VCPKG_ROOT=${drive}/vcpkg" >> $env:GITHUB_ENV
 
     # these limitations do not exist on linux
-    - name: Set VCPKG_ROOT (Linux)
+    - name: Set VCPKG_ROOT Environment Variable (Linux)
       if: runner.os == 'Linux'
       run: echo "VCPKG_ROOT=${{ github.workspace }}/vcpkg" >> $GITHUB_ENV
 
@@ -110,4 +115,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: ${{ matrix.preset }}
-        path: ${{ matrix.preset }}
+        path: ${{ matrix.path }}
