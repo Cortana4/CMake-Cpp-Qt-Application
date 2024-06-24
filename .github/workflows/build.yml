@@ -115,7 +115,7 @@ jobs:
       if: failure() && runner.os == 'Windows'
       uses: actions/upload-artifact@v2
       with:
-        name: ${{ matrix.os }}/vcpkg-logs
+        name: windows-vcpkg-logs
         path: |
           build/${{ matrix.path }}/vcpkg_installed/vcpkg/blds/qt5-base/build-x64-windows-dbg-out.log
           build/${{ matrix.path }}/vcpkg_installed/vcpkg/blds/qt5-base/build-x64-windows-dbg-err.log
@@ -124,7 +124,7 @@ jobs:
       if: failure() && runner.os == 'Linux'
       uses: actions/upload-artifact@v2
       with:
-        name: linux/vcpkg-logs
+        name: linux-vcpkg-logs
         path: |
           ${{ env.VCPKG_ROOT }}/buildtrees/qt5-base/config-x64-linux-dbg-out.log
           ${{ env.VCPKG_ROOT }}/buildtrees/qt5-base/config-x64-linux-dbg-err.log
