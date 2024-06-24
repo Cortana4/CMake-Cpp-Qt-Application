@@ -18,8 +18,7 @@ jobs:
           # windows
           - os: windows-latest
             preset: windows-x64-debug
-            path: bin/x64/Debug
-            path2: build/x64/Debug
+            path: x64/Debug
 
           #- os: windows-latest
           #  preset: windows-x64-release
@@ -36,8 +35,7 @@ jobs:
           # linux
           - os: ubuntu-latest
             preset: linux-x64-debug
-            path: bin/x64/Debug
-            path2: build/x64/Debug
+            path: x64/Debug
 
           #- os: ubuntu-latest
           #  preset: linux-x64-release
@@ -114,14 +112,25 @@ jobs:
         cmake --build --preset ${{ matrix.preset }} --target install
 
     - name: Upload vcpkg logs
-      if: failure()
+      if: failure() && runner.os == 'Windows'
       uses: actions/upload-artifact@v2
       with:
-        name: vcpkg-logs
-        path: ${{ matrix.path2 }}/vcpkg-manifest-install.log
+        name: ${{ matrix.os }}/vcpkg-logs
+        path: |
+          build/${{ matrix.path }}/vcpkg_installed/vcpkg/blds/qt5-base/build-x64-windows-dbg-out.log
+          build/${{ matrix.path }}/vcpkg_installed/vcpkg/blds/qt5-base/build-x64-windows-dbg-err.log
+
+    - name: Upload vcpkg logs (Linux)
+      if: failure() && runner.os == 'Linux'
+      uses: actions/upload-artifact@v2
+      with:
+        name: linux/vcpkg-logs
+        path: |
+          ${{ env.VCPKG_ROOT }}/buildtrees/qt5-base/config-x64-linux-dbg-out.log
+          ${{ env.VCPKG_ROOT }}/buildtrees/qt5-base/config-x64-linux-dbg-err.log
 
     - name: Upload Artifacts
       uses: actions/upload-artifact@v2
       with:
         name: ${{ matrix.preset }}
-        path: ${{ matrix.path }}
+        path: bin/${{ matrix.path }}
