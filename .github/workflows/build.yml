@@ -72,6 +72,7 @@ jobs:
         ninja-build \
         libxi-dev \
         libxtst-dev \
+        '^libxcb.*-dev' \
         libx11-xcb-dev \
         libgl1-mesa-dev \
         libxrender-dev \
