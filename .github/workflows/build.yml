@@ -23,14 +23,14 @@ jobs:
           - os: windows-latest
             preset: windows-x64-release
             path: x64/Release
-          
-          - os: windows-latest
-            preset: windows-x86-debug
-            path: x86/Debug
-          
-          - os: windows-latest
-            preset: windows-x86-release
-            path: x86/Release
+
+          #- os: windows-latest
+          #  preset: windows-x86-debug
+          #  path: x86/Debug
+
+          #- os: windows-latest
+          #  preset: windows-x86-release
+          #  path: x86/Release
 
           # linux
           - os: ubuntu-latest
@@ -40,14 +40,14 @@ jobs:
           - os: ubuntu-latest
             preset: linux-x64-release
             path: x64/Release
-          
-          - os: ubuntu-latest
-            preset: linux-x86-debug
-            path: x86/Debug
-          
-          - os: ubuntu-latest
-            preset: linux-x86-release
-            path: x86/Release
+
+          #- os: ubuntu-latest
+          #  preset: linux-x86-debug
+          #  path: x86/Debug
+
+          #- os: ubuntu-latest
+          #  preset: linux-x86-release
+          #  path: x86/Release
 
     steps:
     - name: Checkout Code
