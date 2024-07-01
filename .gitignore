@@ -2,5 +2,3 @@
 bin/
 build/
 out/
-test/convolution/output/
-test/superposition/output/
