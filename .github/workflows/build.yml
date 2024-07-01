@@ -102,7 +102,6 @@ jobs:
     - name: Setup vcpkg
       uses: lukka/run-vcpkg@v11
       with:
-        vcpkgGitCommitId: 6f1ddd6b6878e7e66fcc35c65ba1d8feec2e01f8
         vcpkgDirectory: ${{ env.VCPKG_ROOT }}
         doNotCache: false
         runVcpkgInstall: false
