@@ -85,16 +85,19 @@ jobs:
     # due to path length limitations on windows, vcpkg root and vcpkg_installed
     # paths must be as short as possible, otherwise the build of dependencies
     # (especially qt) might fail
-    - name: Set VCPKG_ROOT Environment Variable (Windows)
+    - name: Set Environment Variables (Windows)
       if: runner.os == 'Windows'
       run: |
         subst x: ${{ github.workspace }}
+        echo "WORKSPACE=x:/" >> $env:GITHUB_ENV
         echo "VCPKG_ROOT=x:/vcpkg" >> $env:GITHUB_ENV
 
     # these limitations do not exist on linux
-    - name: Set VCPKG_ROOT Environment Variable (Linux)
+    - name: Set Environment Variables (Linux)
       if: runner.os == 'Linux'
-      run: echo "VCPKG_ROOT=${{ github.workspace }}/vcpkg" >> $GITHUB_ENV
+      run: |
+          echo "WORKSPACE=${{ github.workspace }}" >> $GITHUB_ENV
+          echo "VCPKG_ROOT=${{ github.workspace }}/vcpkg" >> $GITHUB_ENV
 
     - name: Setup vcpkg
       uses: lukka/run-vcpkg@v11
@@ -109,8 +112,7 @@ jobs:
       uses: ilammy/msvc-dev-cmd@v1
 
     - name: CMake Configure, Build and Install
-      working-directory: x:/
-      if: runner.os == 'Windows'
+      working-directory: ${{ env.WORKSPACE }}
       run: |
         cmake --preset ${{ matrix.preset }}
         cmake --build --preset ${{ matrix.preset }} --target install
