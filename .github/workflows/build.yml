@@ -90,7 +90,7 @@ jobs:
       run: |
         subst x: ${{ github.workspace }}
         echo "WORKSPACE=x:/" >> $env:GITHUB_ENV
-        echo "VCPKG_ROOT=x:/vcpkg" >> $env:GITHUB_ENV
+        echo "VCPKG_ROOT=${{ env.WORKSPACE }}vcpkg" >> $env:GITHUB_ENV
 
     # these limitations do not exist on linux
     - name: Set Environment Variables (Linux)
