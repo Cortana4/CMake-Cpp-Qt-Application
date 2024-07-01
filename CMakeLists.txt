@@ -66,4 +66,6 @@ endforeach()
 
 ## copy dynamic library and resource files from build to install directory
 install(TARGETS ${TARGET_FILE} DESTINATION ${CMAKE_INSTALL_PREFIX})
-install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/resources DESTINATION ${CMAKE_INSTALL_PREFIX})
+if(NOT "${RESOURCE_FILES}" STREQUAL "")
+	install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/resources DESTINATION ${CMAKE_INSTALL_PREFIX})
+endif()

@@ -22,15 +22,15 @@ jobs:
 
           #- os: windows-latest
           #  preset: windows-x64-release
-          #  path: bin/x64/Release
+          #  path: x64/Release
           #
           #- os: windows-latest
           #  preset: windows-x86-debug
-          #  path: bin/x86/Debug
+          #  path: x86/Debug
           #
           #- os: windows-latest
           #  preset: windows-x86-release
-          #  path: bin/x86/Release
+          #  path: x86/Release
 
           # linux
           - os: ubuntu-latest
@@ -39,15 +39,15 @@ jobs:
 
           #- os: ubuntu-latest
           #  preset: linux-x64-release
-          #  path: bin/x64/Release
+          #  path: x64/Release
           #
           #- os: ubuntu-latest
           #  preset: linux-x86-debug
-          #  path: bin/x86/Debug
+          #  path: x86/Debug
           #
           #- os: ubuntu-latest
           #  preset: linux-x86-release
-          #  path: bin/x86/Release
+          #  path: x86/Release
 
     steps:
     - name: Checkout Code
@@ -82,13 +82,14 @@ jobs:
     - name: Install CMake
       uses: jwlawson/actions-setup-cmake@v2
 
-    # due to path length limitations on windows, the vcpkg path must be as short
-    # as possible, otherwise the build of dependencies (especially qt) might fail
+    # due to path length limitations on windows, vcpkg root and vcpkg_installed
+    # paths must be as short as possible, otherwise the build of dependencies
+    # (especially qt) might fail
     - name: Set VCPKG_ROOT Environment Variable (Windows)
       if: runner.os == 'Windows'
       run: |
-        $drive = Split-Path -Path ${{ github.workspace }} -Qualifier
-        echo "VCPKG_ROOT=${drive}/vcpkg" >> $env:GITHUB_ENV
+        subst x: ${{ github.workspace }}
+        echo "VCPKG_ROOT=x:/vcpkg" >> $env:GITHUB_ENV
 
     # these limitations do not exist on linux
     - name: Set VCPKG_ROOT Environment Variable (Linux)
@@ -108,27 +109,29 @@ jobs:
       uses: ilammy/msvc-dev-cmd@v1
 
     - name: CMake Configure, Build and Install
+      working-directory: x:/
+      if: runner.os == 'Windows'
       run: |
         cmake --preset ${{ matrix.preset }}
         cmake --build --preset ${{ matrix.preset }} --target install
 
-    - name: Upload vcpkg logs
-      if: failure() && runner.os == 'Windows'
-      uses: actions/upload-artifact@v2
-      with:
-        name: windows-vcpkg-logs
-        path: |
-          build/${{ matrix.path }}/vcpkg_installed/vcpkg/blds/qt5-base/build-x64-windows-dbg-out.log
-          build/${{ matrix.path }}/vcpkg_installed/vcpkg/blds/qt5-base/build-x64-windows-dbg-err.log
-
-    - name: Upload vcpkg logs (Linux)
-      if: failure() && runner.os == 'Linux'
-      uses: actions/upload-artifact@v2
-      with:
-        name: linux-vcpkg-logs
-        path: |
-          ${{ env.VCPKG_ROOT }}/buildtrees/qt5-base/config-x64-linux-dbg-out.log
-          ${{ env.VCPKG_ROOT }}/buildtrees/qt5-base/config-x64-linux-dbg-err.log
+    #- name: Upload vcpkg logs
+    #  if: failure() && runner.os == 'Windows'
+    #  uses: actions/upload-artifact@v2
+    #  with:
+    #    name: windows-vcpkg-logs
+    #    path: |
+    #      build/${{ matrix.path }}/vcpkg_installed/vcpkg/blds/qt5-base/build-x64-windows-dbg-out.log
+    #      build/${{ matrix.path }}/vcpkg_installed/vcpkg/blds/qt5-base/build-x64-windows-dbg-err.log
+    #
+    #- name: Upload vcpkg logs (Linux)
+    #  if: failure() && runner.os == 'Linux'
+    #  uses: actions/upload-artifact@v2
+    #  with:
+    #    name: linux-vcpkg-logs
+    #    path: |
+    #      ${{ env.VCPKG_ROOT }}/buildtrees/qt5-base/config-x64-linux-dbg-out.log
+    #      ${{ env.VCPKG_ROOT }}/buildtrees/qt5-base/config-x64-linux-dbg-err.log
 
     - name: Upload Artifacts
       uses: actions/upload-artifact@v2
