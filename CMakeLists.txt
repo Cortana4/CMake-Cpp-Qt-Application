@@ -33,11 +33,6 @@ set(SRC_FILES
 	"src/mainWindow.cpp"
 )
 
-## resource files
-set(RESOURCE_FILES
-	
-)
-
 ## add source and header files to this project's executable
 add_executable(${TARGET_FILE} ${SRC_FILES} ${INC_FILES})
 
@@ -53,19 +48,16 @@ target_link_libraries(${TARGET_FILE} PRIVATE Qt5::Widgets)
 set_target_properties(${TARGET_FILE} PROPERTIES WIN32_EXECUTABLE ON)
 
 ## copy resource files to build directory
-add_custom_target(copy_resources ALL DEPENDS ${RESOURCE_FILES})
-add_dependencies(${TARGET_FILE} copy_resources)
-foreach(RESOURCE_FILE ${RESOURCE_FILES})
-	add_custom_command(
-		TARGET copy_resources
-		COMMAND ${CMAKE_COMMAND} -E copy_if_different
-		${CMAKE_CURRENT_SOURCE_DIR}/${RESOURCE_FILE}
-		${CMAKE_CURRENT_BINARY_DIR}/${RESOURCE_FILE}
-	)
-endforeach()
+#add_custom_target(copy_resources ALL
+#	COMMAND ${CMAKE_COMMAND} -E remove_directory
+#	${CMAKE_CURRENT_BINARY_DIR}/resources
+#
+#	COMMAND ${CMAKE_COMMAND} -E copy_directory
+#	${CMAKE_CURRENT_SOURCE_DIR}/resources
+#	${CMAKE_CURRENT_BINARY_DIR}/resources
+#)
+#add_dependencies(${TARGET_FILE} copy_resources)
 
 ## copy dynamic library and resource files from build to install directory
 install(TARGETS ${TARGET_FILE} DESTINATION ${CMAKE_INSTALL_PREFIX})
-if(NOT "${RESOURCE_FILES}" STREQUAL "")
-	install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/resources DESTINATION ${CMAKE_INSTALL_PREFIX})
-endif()
+#install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/resources DESTINATION ${CMAKE_INSTALL_PREFIX})
