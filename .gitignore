@@ -1,4 +1,8 @@
+.*/
+!.github/
+!.vs/
+!.vs/launch.vs.json
 .vs/
-bin/
 build/
+install/
 out/
