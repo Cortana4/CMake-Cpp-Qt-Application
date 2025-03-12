@@ -1,0 +1,13 @@
+{
+	"version": "0.2.1",
+	"defaults": {},
+	"configurations": [
+		{
+			"type": "default",
+			"project": "CMakeLists.txt",
+			"projectTarget": "Cpp-Qt-Application.exe (bin\\Cpp-Qt-Application.exe)",
+			"name": "Cpp-Qt-Application.exe (bin\\Cpp-Qt-Application.exe)",
+			"currentDir": "${workspaceRoot}lol"
+		}
+	]
+}

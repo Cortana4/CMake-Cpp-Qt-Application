@@ -1,7 +1,5 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
-
-#include <QtWidgets/QMainWindow>
+#pragma once
+#include <QMainWindow>
 
 
 class MainWindow : public QMainWindow
@@ -12,8 +10,8 @@ public:
 	MainWindow(QWidget* parent = nullptr, Qt::WindowFlags flags = Qt::WindowFlags());
 
 private:
+	QWidget* centralWidget;
 
 private slots:
 
 };
-#endif // MAINWINDOW_H
