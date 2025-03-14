@@ -44,10 +44,8 @@ find_package(Qt6 REQUIRED COMPONENTS Widgets)
 target_link_libraries(${TARGET_FILE} PRIVATE Qt6::Widgets)
 
 if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
-	## on windows, open the console window only for debug builds
-	if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-		set_target_properties(${TARGET_FILE} PROPERTIES WIN32_EXECUTABLE OFF)
-	else()
+	## on windows, don't open the console window for release builds
+	if(CMAKE_BUILD_TYPE STREQUAL "Release")
 		set_target_properties(${TARGET_FILE} PROPERTIES WIN32_EXECUTABLE ON)
 	endif()
 
