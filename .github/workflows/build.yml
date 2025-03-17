@@ -102,6 +102,9 @@ jobs:
         sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-13 100
         sudo apt-get install -y \
         ninja-build \
+        autoconf \
+        automake \
+        autoconf-archive \
         libxi-dev \
         libxtst-dev \
         '^libxcb.*-dev' \
