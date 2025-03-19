@@ -47,6 +47,10 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
 	## on windows, don't open the console window for release builds
 	if(CMAKE_BUILD_TYPE STREQUAL "Release")
 		set_target_properties(${TARGET_FILE} PROPERTIES WIN32_EXECUTABLE ON)
+
+		## when using WIN32_EXECUTABLE ON, the linker expects a WinMain entry point, so
+		## we have to set /ENTRY manually to use the default main entry point instead
+		target_link_options(${TARGET_FILE} PRIVATE "/ENTRY:mainCRTStartup")
 	endif()
 
 	if(BUILD_SHARED_LIBS)
