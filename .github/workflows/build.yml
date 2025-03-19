@@ -107,6 +107,7 @@ jobs:
         autoconf \
         autoconf-archive \
         libtool \
+        libltdl-dev \
         '^libxcb.*-dev' \
         libxi-dev \
         libxtst-dev \
