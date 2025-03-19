@@ -103,9 +103,10 @@ jobs:
         sudo apt-get install -y \
         ninja-build \
         pkg-config \
-        autoconf \
         automake \
+        autoconf \
         autoconf-archive \
+        libtool \
         '^libxcb.*-dev' \
         libxi-dev \
         libxtst-dev \
@@ -113,8 +114,7 @@ jobs:
         libgl1-mesa-dev \
         libxrender-dev \
         libxkbcommon-dev \
-        libxkbcommon-x11-dev \
-        libtool
+        libxkbcommon-x11-dev
 
     - name: Install CMake
       uses: jwlawson/actions-setup-cmake@v2
