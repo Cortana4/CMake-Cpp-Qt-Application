@@ -102,17 +102,19 @@ jobs:
         sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-13 100
         sudo apt-get install -y \
         ninja-build \
+        pkg-config \
         autoconf \
         automake \
         autoconf-archive \
+        '^libxcb.*-dev' \
         libxi-dev \
         libxtst-dev \
-        '^libxcb.*-dev' \
         libx11-xcb-dev \
         libgl1-mesa-dev \
         libxrender-dev \
         libxkbcommon-dev \
-        libxkbcommon-x11-dev
+        libxkbcommon-x11-dev \
+        libtool
 
     - name: Install CMake
       uses: jwlawson/actions-setup-cmake@v2
