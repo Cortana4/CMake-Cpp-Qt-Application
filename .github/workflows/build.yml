@@ -113,6 +113,8 @@ jobs:
         libxtst-dev \
         libx11-xcb-dev \
         libgl1-mesa-dev \
+        libglu1-mesa-dev \
+        libegl1-mesa-dev \
         libxrender-dev \
         libxkbcommon-dev \
         libxkbcommon-x11-dev
