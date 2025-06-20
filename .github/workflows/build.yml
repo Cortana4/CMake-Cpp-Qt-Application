@@ -119,12 +119,23 @@ jobs:
         libxkbcommon-dev \
         libxkbcommon-x11-dev
 
+    # Qt exceeds the available github runner space, so we have to remove
+    # unused stuff to free up memory
+    - name: Free up Memory (Linux)
+      if: runner.os == 'Linux'
+      run: |
+        sudo rm -rf /usr/share/dotnet
+        sudo rm -rf /opt/ghc
+        sudo rm -rf /usr/local/lib/android
+
     - name: Install CMake
       uses: jwlawson/actions-setup-cmake@v2
+      with:
+        cmake-version: '3.31.x'
 
     # due to path length limitations on windows, vcpkg root and vcpkg_installed
     # paths must be as short as possible, otherwise the build of dependencies
-    # (especially qt) might fail
+    # (especially Qt) might fail
     - name: Set Environment Variables (Windows)
       if: runner.os == 'Windows'
       run: |

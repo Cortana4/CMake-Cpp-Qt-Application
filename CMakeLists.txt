@@ -33,39 +33,39 @@ find_package(Qt6 REQUIRED COMPONENTS Core)
 qt_standard_project_setup()
 
 ## add source and header files to this project's executable
-qt_add_executable(${TARGET_FILE} ${SRC_FILES} ${INC_FILES})
+qt_add_executable("${TARGET_FILE}" ${SRC_FILES} ${INC_FILES})
 
 ## add include directories
-target_include_directories(${TARGET_FILE} PRIVATE "include")
+target_include_directories("${TARGET_FILE}" PRIVATE "include")
 
 ## add libraries
 # Qt6
 find_package(Qt6 REQUIRED COMPONENTS Widgets)
-target_link_libraries(${TARGET_FILE} PRIVATE Qt6::Widgets)
+target_link_libraries("${TARGET_FILE}" PRIVATE Qt6::Widgets)
 
 if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
 	## on windows, don't open the console window for release builds
 	if(CMAKE_BUILD_TYPE STREQUAL "Release")
-		set_target_properties(${TARGET_FILE} PROPERTIES WIN32_EXECUTABLE ON)
+		set_target_properties("${TARGET_FILE}" PROPERTIES WIN32_EXECUTABLE ON)
 
 		## when using WIN32_EXECUTABLE ON, the linker expects a WinMain entry point, so
 		## we have to set /ENTRY manually to use the default main entry point instead
-		target_link_options(${TARGET_FILE} PRIVATE "/ENTRY:mainCRTStartup")
+		target_link_options("${TARGET_FILE}" PRIVATE "/ENTRY:mainCRTStartup")
 	endif()
 
 	if(BUILD_SHARED_LIBS)
 		## on windows, vcpkg does copy dependent .dll files to the build directory,
 		## but that does not include Qt platform plugins etc., so we have to run
 		## windeployqt after build in order to run the program from the build directory
-		add_custom_command(TARGET ${TARGET_FILE} POST_BUILD
+		add_custom_command(TARGET "${TARGET_FILE}" POST_BUILD
 			COMMAND Qt6::windeployqt
-			ARGS $<TARGET_FILE:${TARGET_FILE}>
+			ARGS "$<TARGET_FILE:${TARGET_FILE}>"
 		)
 
 		## same applies to the install directory, so we have to generate a script that
 		## copies the files for us
 		qt_generate_deploy_script(
-			TARGET ${TARGET_FILE}
+			TARGET "${TARGET_FILE}"
 			OUTPUT_SCRIPT DEPLOY_SCRIPT
 			CONTENT "
 set(QT_DEPLOY_PREFIX \"${CMAKE_INSTALL_PREFIX}/bin\")
@@ -86,7 +86,7 @@ elseif(CMAKE_SYSTEM_NAME STREQUAL "Linux")
 		## however, in order to have a self contained install directory, we still
 		## need to copy the files with a generated script
 		qt_generate_deploy_script(
-			TARGET ${TARGET_FILE}
+			TARGET "${TARGET_FILE}"
 			OUTPUT_SCRIPT DEPLOY_SCRIPT
 			CONTENT "
 set(QT_DEPLOY_PREFIX \"${CMAKE_INSTALL_PREFIX}\")
@@ -107,14 +107,14 @@ qt_deploy_runtime_dependencies(
 endif()
 
 ## install exetutable, shared and static libraries
-install(TARGETS ${TARGET_FILE} RUNTIME DESTINATION ${RUNTIME_INSTALL_DIRECTORY})
-install(TARGETS ${TARGET_FILE} LIBRARY DESTINATION ${LIBRARY_INSTALL_DIRECTORY})
-install(TARGETS ${TARGET_FILE} ARCHIVE DESTINATION ${ARCHIVE_INSTALL_DIRECTORY})
+install(TARGETS "${TARGET_FILE}" RUNTIME DESTINATION "${RUNTIME_INSTALL_DIRECTORY}")
+install(TARGETS "${TARGET_FILE}" LIBRARY DESTINATION "${LIBRARY_INSTALL_DIRECTORY}")
+install(TARGETS "${TARGET_FILE}" ARCHIVE DESTINATION "${ARCHIVE_INSTALL_DIRECTORY}")
 
 ## install Qt platform plugins etc.
 if(BUILD_SHARED_LIBS)
-	install(SCRIPT ${DEPLOY_SCRIPT})
+	install(SCRIPT "${DEPLOY_SCRIPT}")
 endif()
 
 ## install resources folder
-install(DIRECTORY resources DESTINATION ${RUNTIME_INSTALL_DIRECTORY})
+install(DIRECTORY "resources" DESTINATION "${RUNTIME_INSTALL_DIRECTORY}")
