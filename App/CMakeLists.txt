@@ -6,8 +6,10 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
-## target binary file
+## name of target binary, component and runtime dependency set
 set(TARGET_NAME "app")
+set(COMPONENT_NAME "${TARGET_NAME}")
+set(RUNTIME_DEP_SET_NAME "${TARGET_NAME}_runtime_deps")
 
 ## header files
 file(GLOB_RECURSE INC_FILES "include/*.h")
@@ -37,7 +39,7 @@ target_include_directories("${TARGET_NAME}" PRIVATE "include")
 # via vcpkg
 #find_package(<lib> CONFIG REQUIRED)
 #target_link_libraries("${TARGET_NAME}" PRIVATE <lib>)
-
+#
 # manually
 #add_library(<lib> SHARED IMPORTED)
 #set_target_properties(<lib> PROPERTIES
@@ -51,7 +53,12 @@ target_include_directories("${TARGET_NAME}" PRIVATE "include")
 #	"$<TARGET_FILE:<lib>>" "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}"
 #	VERBATIM
 #)
-#install(IMPORTED_RUNTIME_ARTIFACTS <lib> LIBRARY DESTINATION "${LIBRARY_INSTALL_DIRECTORY}")
+#install(IMPORTED_RUNTIME_ARTIFACTS <lib>
+#	RUNTIME_DEPENDENCY_SET "${RUNTIME_DEP_SET_NAME}"
+#	RUNTIME DESTINATION "${RUNTIME_INSTALL_DIRECTORY}"
+#	LIBRARY DESTINATION "${LIBRARY_INSTALL_DIRECTORY}"
+#	COMPONENT "${COMPONENT_NAME}"
+#)
 
 # Qt6
 find_package(Qt6 REQUIRED COMPONENTS Widgets)
@@ -66,10 +73,20 @@ util_add_post_build_qt_deploy("${TARGET_NAME}")
 #	"${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/resources"
 #)
 
-## install exetutable, shared and static libraries
-install(TARGETS "${TARGET_NAME}" RUNTIME DESTINATION "${RUNTIME_INSTALL_DIRECTORY}")
-install(TARGETS "${TARGET_NAME}" LIBRARY DESTINATION "${LIBRARY_INSTALL_DIRECTORY}")
-install(TARGETS "${TARGET_NAME}" ARCHIVE DESTINATION "${ARCHIVE_INSTALL_DIRECTORY}")
+## install executable, shared and static libraries
+install(TARGETS "${TARGET_NAME}"
+	RUNTIME_DEPENDENCY_SET "${RUNTIME_DEP_SET_NAME}"
+	RUNTIME DESTINATION "${RUNTIME_INSTALL_DIRECTORY}"
+	LIBRARY DESTINATION "${LIBRARY_INSTALL_DIRECTORY}"
+	ARCHIVE DESTINATION "${ARCHIVE_INSTALL_DIRECTORY}"
+	COMPONENT "${COMPONENT_NAME}"
+)
+install(RUNTIME_DEPENDENCY_SET "${RUNTIME_DEP_SET_NAME}"
+	DESTINATION "${LIBRARY_INSTALL_DIRECTORY}"
+	COMPONENT "${COMPONENT_NAME}"
+	PRE_EXCLUDE_REGEXES ${GLOBAL_DEP_PRE_EXCLUDE_REGEXES}
+	POST_EXCLUDE_REGEXES ${GLOBAL_DEP_POST_EXCLUDE_REGEXES}
+)
 
 ## install Qt platform plugins etc.
 util_install_qt_dependencies("${TARGET_NAME}")
