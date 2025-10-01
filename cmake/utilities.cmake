@@ -47,7 +47,7 @@ function(util_install_qt_dependencies TARGET_NAME)
 		return()
 	endif()
 	
-	## neither cmake nor vcpkg handle the copy of the Qt platform plugins etc. on
+	## Neither cmake nor vcpkg handle the copy of the Qt platform plugins etc. on
 	## install. In order to have a self contained install directory, we need to
 	## copy these files with a generated script. The generated script fails, when
 	## the parent path does not exist. The parent paths are created when RUNTIME,
