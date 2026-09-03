@@ -1,0 +1,235 @@
+{
+	"version": 9,
+	"include": [
+		"../../presets/base-presets.json",
+		"../../presets/ext-arch-presets.json",
+		"../../presets/vendor-presets.json"
+	],
+	"configurePresets": [
+		{
+			"name": "linux-clang-gnu-base",
+			"hidden": true,
+			"inherits": [
+				"vcpkg-base",
+				"vs-remote-settings",
+				"vs-settings"
+			],
+			"condition": {
+				"type": "equals",
+				"lhs": "${hostSystemName}",
+				"rhs": "Linux"
+			},
+			"cacheVariables": {
+				"VCPKG_OVERLAY_TRIPLETS": "${sourceDir}/cmake/platforms/linux-clang-gnu/triplets"
+			}
+		},
+		{
+			"name": "linux-clang-gnu-x64-base",
+			"hidden": true,
+			"inherits": [
+				"linux-clang-gnu-base",
+				"ext-arch-x64"
+			],
+			"cacheVariables": {
+				"VCPKG_CHAINLOAD_TOOLCHAIN_FILE": "${sourceDir}/cmake/platforms/linux-clang-gnu/toolchains/x64.cmake"
+			}
+		},
+		{
+			"name": "linux-clang-gnu-x86-base",
+			"hidden": true,
+			"inherits": [
+				"linux-clang-gnu-base",
+				"ext-arch-x86"
+			],
+			"cacheVariables": {
+				"VCPKG_CHAINLOAD_TOOLCHAIN_FILE": "${sourceDir}/cmake/platforms/linux-clang-gnu/toolchains/x86.cmake"
+			}
+		},
+		{
+			"name": "linux-clang-gnu-arm64-base",
+			"hidden": true,
+			"inherits": [
+				"linux-clang-gnu-base",
+				"ext-arch-arm64"
+			],
+			"cacheVariables": {
+				"VCPKG_CHAINLOAD_TOOLCHAIN_FILE": "${sourceDir}/cmake/platforms/linux-clang-gnu/toolchains/arm64.cmake"
+			}
+		},
+		{
+			"name": "linux-clang-gnu-arm-base",
+			"hidden": true,
+			"inherits": [
+				"linux-clang-gnu-base",
+				"ext-arch-arm"
+			],
+			"cacheVariables": {
+				"VCPKG_CHAINLOAD_TOOLCHAIN_FILE": "${sourceDir}/cmake/platforms/linux-clang-gnu/toolchains/arm.cmake"
+			}
+		},
+		{
+			"name": "linux-clang-gnu-riscv64-base",
+			"hidden": true,
+			"inherits": [
+				"linux-clang-gnu-base"
+			],
+			"cacheVariables": {
+				"VCPKG_CHAINLOAD_TOOLCHAIN_FILE": "${sourceDir}/cmake/platforms/linux-clang-gnu/toolchains/riscv64.cmake"
+			}
+		},
+		{
+			"name": "linux-clang-gnu-riscv32-base",
+			"hidden": true,
+			"inherits": [
+				"linux-clang-gnu-base"
+			],
+			"cacheVariables": {
+				"VCPKG_CHAINLOAD_TOOLCHAIN_FILE": "${sourceDir}/cmake/platforms/linux-clang-gnu/toolchains/riscv32.cmake"
+			}
+		},
+		{
+			"name": "linux-clang-gnu-x64-dynamic",
+			"inherits": [
+				"linux-clang-gnu-x64-base"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "x64-dynamic",
+				"RUNTIME_LIBRARY_LINKAGE": "dynamic"
+			}
+		},
+		{
+			"name": "linux-clang-gnu-x64-static",
+			"inherits": [
+				"linux-clang-gnu-x64-base"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "x64-static",
+				"RUNTIME_LIBRARY_LINKAGE": "dynamic"
+			}
+		},
+		{
+			"name": "linux-clang-gnu-x86-dynamic",
+			"inherits": [
+				"linux-clang-gnu-x86-base"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "x86-dynamic",
+				"RUNTIME_LIBRARY_LINKAGE": "dynamic"
+			}
+		},
+		{
+			"name": "linux-clang-gnu-x86-static",
+			"inherits": [
+				"linux-clang-gnu-x86-base"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "x86-static",
+				"RUNTIME_LIBRARY_LINKAGE": "dynamic"
+			}
+		},
+		{
+			"name": "linux-clang-gnu-arm64-dynamic",
+			"inherits": [
+				"linux-clang-gnu-arm64-base"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "arm64-dynamic",
+				"RUNTIME_LIBRARY_LINKAGE": "dynamic"
+			}
+		},
+		{
+			"name": "linux-clang-gnu-arm64-static",
+			"inherits": [
+				"linux-clang-gnu-arm64-base"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "arm64-static",
+				"RUNTIME_LIBRARY_LINKAGE": "dynamic"
+			}
+		},
+		{
+			"name": "linux-clang-gnu-arm-dynamic",
+			"inherits": [
+				"linux-clang-gnu-arm-base"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "arm-dynamic",
+				"RUNTIME_LIBRARY_LINKAGE": "dynamic"
+			}
+		},
+		{
+			"name": "linux-clang-gnu-arm-static",
+			"inherits": [
+				"linux-clang-gnu-arm-base"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "arm-static",
+				"RUNTIME_LIBRARY_LINKAGE": "dynamic"
+			}
+		},
+		{
+			"name": "linux-clang-gnu-riscv64-dynamic",
+			"inherits": [
+				"linux-clang-gnu-riscv64-base"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "riscv64-dynamic",
+				"RUNTIME_LIBRARY_LINKAGE": "dynamic"
+			}
+		},
+		{
+			"name": "linux-clang-gnu-riscv64-static",
+			"inherits": [
+				"linux-clang-gnu-riscv64-base"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "riscv64-static",
+				"RUNTIME_LIBRARY_LINKAGE": "dynamic"
+			}
+		},
+		{
+			"name": "linux-clang-gnu-riscv32-dynamic",
+			"inherits": [
+				"linux-clang-gnu-riscv32-base"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "riscv32-dynamic",
+				"RUNTIME_LIBRARY_LINKAGE": "dynamic"
+			}
+		},
+		{
+			"name": "linux-clang-gnu-riscv32-static",
+			"inherits": [
+				"linux-clang-gnu-riscv32-base"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "riscv32-static",
+				"RUNTIME_LIBRARY_LINKAGE": "dynamic"
+			}
+		}
+	]
+}

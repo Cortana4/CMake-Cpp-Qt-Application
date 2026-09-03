@@ -25,11 +25,16 @@ qt_standard_project_setup()
 qt_add_executable("${TARGET_NAME}" ${SRC_FILES} ${INC_FILES})
 
 ## on windows, don't open the console window for release builds
-if(CMAKE_SYSTEM_NAME STREQUAL "Windows" AND CMAKE_BUILD_TYPE STREQUAL "Release")
+if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
 	## when using WIN32_EXECUTABLE ON, the linker expects a WinMain entry point, so
 	## we have to set /ENTRY manually to use the default main entry point instead
-	set_target_properties("${TARGET_NAME}" PROPERTIES WIN32_EXECUTABLE ON)
-	target_link_options("${TARGET_NAME}" PRIVATE "/ENTRY:mainCRTStartup")
+	set_target_properties("${TARGET_NAME}" PROPERTIES
+		WIN32_EXECUTABLE "$<CONFIG:Release>"
+	)
+
+	target_link_options("${TARGET_NAME}" PRIVATE
+		"$<$<CONFIG:Release>:/ENTRY:mainCRTStartup>"
+	)
 endif()
 
 ## add include directories
@@ -65,10 +70,10 @@ find_package(Qt6 REQUIRED COMPONENTS Widgets)
 target_link_libraries("${TARGET_NAME}" PRIVATE Qt6::Widgets)
 
 # copy Qt platform plugins etc. to the build directory
-util_add_post_build_qt_deploy("${TARGET_NAME}")
+add_post_build_qt_deployment("${TARGET_NAME}")
 
 ## make assets available in the build directory via symlink
-#util_add_post_build_create_symlink("${TARGET_NAME}"
+#add_post_build_symlink("${TARGET_NAME}"
 #	"${CMAKE_CURRENT_SOURCE_DIR}/resources"
 #	"${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/resources"
 #)
@@ -84,12 +89,12 @@ install(TARGETS "${TARGET_NAME}"
 install(RUNTIME_DEPENDENCY_SET "${RUNTIME_DEP_SET_NAME}"
 	DESTINATION "${LIBRARY_INSTALL_DIRECTORY}"
 	COMPONENT "${COMPONENT_NAME}"
-	PRE_EXCLUDE_REGEXES ${GLOBAL_DEP_PRE_EXCLUDE_REGEXES}
-	POST_EXCLUDE_REGEXES ${GLOBAL_DEP_POST_EXCLUDE_REGEXES}
+	PRE_EXCLUDE_REGEXES ${RUNTIME_DEP_PRE_EXCLUDE_REGEXES}
+	POST_EXCLUDE_REGEXES ${RUNTIME_DEP_POST_EXCLUDE_REGEXES}
 )
 
 ## install Qt platform plugins etc.
-util_install_qt_dependencies("${TARGET_NAME}")
+install_qt_dependencies("${TARGET_NAME}")
 
 ## install assets
 #install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/resources" DESTINATION "${RUNTIME_INSTALL_DIRECTORY}")

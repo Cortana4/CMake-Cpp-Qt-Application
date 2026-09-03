@@ -1,0 +1,210 @@
+{
+	"version": 9,
+	"include": [
+		"../../presets/base-presets.json",
+		"../../presets/ext-arch-presets.json",
+		"../../presets/vendor-presets.json"
+	],
+	"configurePresets": [
+		{
+			"name": "windows-clang-mingw-base",
+			"hidden": true,
+			"inherits": [
+				"vcpkg-base",
+				"vs-remote-settings",
+				"vs-settings"
+			],
+			"cacheVariables": {
+				"VCPKG_OVERLAY_TRIPLETS": "${sourceDir}/cmake/platforms/windows-clang-mingw/triplets"
+			}
+		},
+		{
+			"name": "windows-clang-mingw-x64-base",
+			"hidden": true,
+			"inherits": [
+				"windows-clang-mingw-base",
+				"ext-arch-x64"
+			],
+			"cacheVariables": {
+				"VCPKG_CHAINLOAD_TOOLCHAIN_FILE": "${sourceDir}/cmake/platforms/windows-clang-mingw/toolchains/x64.cmake"
+			}
+		},
+		{
+			"name": "windows-clang-mingw-x86-base",
+			"hidden": true,
+			"inherits": [
+				"windows-clang-mingw-base",
+				"ext-arch-x86"
+			],
+			"cacheVariables": {
+				"VCPKG_CHAINLOAD_TOOLCHAIN_FILE": "${sourceDir}/cmake/platforms/windows-clang-mingw/toolchains/x86.cmake"
+			}
+		},
+		{
+			"name": "windows-clang-mingw-arm64-base",
+			"hidden": true,
+			"inherits": [
+				"windows-clang-mingw-base",
+				"ext-arch-arm64"
+			],
+			"cacheVariables": {
+				"VCPKG_CHAINLOAD_TOOLCHAIN_FILE": "${sourceDir}/cmake/platforms/windows-clang-mingw/toolchains/arm64.cmake"
+			}
+		},
+		{
+			"name": "windows-clang-mingw-arm-base",
+			"hidden": true,
+			"inherits": [
+				"windows-clang-mingw-base",
+				"ext-arch-arm"
+			],
+			"cacheVariables": {
+				"VCPKG_CHAINLOAD_TOOLCHAIN_FILE": "${sourceDir}/cmake/platforms/windows-clang-mingw/toolchains/arm.cmake"
+			}
+		},
+		{
+			"name": "windows-clang-mingw-x64-dynamic",
+			"inherits": [
+				"windows-clang-mingw-x64-base"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "x64-dynamic",
+				"RUNTIME_LIBRARY_LINKAGE": "dynamic"
+			}
+		},
+		{
+			"name": "windows-clang-mingw-x64-static",
+			"inherits": [
+				"windows-clang-mingw-x64-base"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "x64-static",
+				"RUNTIME_LIBRARY_LINKAGE": "static"
+			}
+		},
+		{
+			"name": "windows-clang-mingw-x64-static-md",
+			"inherits": [
+				"windows-clang-mingw-x64-base"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "x64-static-md",
+				"RUNTIME_LIBRARY_LINKAGE": "dynamic"
+			}
+		},
+		{
+			"name": "windows-clang-mingw-x86-dynamic",
+			"inherits": [
+				"windows-clang-mingw-x86-base"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "x86-dynamic",
+				"RUNTIME_LIBRARY_LINKAGE": "dynamic"
+			}
+		},
+		{
+			"name": "windows-clang-mingw-x86-static",
+			"inherits": [
+				"windows-clang-mingw-x86-base"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "x86-static",
+				"RUNTIME_LIBRARY_LINKAGE": "static"
+			}
+		},
+		{
+			"name": "windows-clang-mingw-x86-static-md",
+			"inherits": [
+				"windows-clang-mingw-x86-base"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "x86-static-md",
+				"RUNTIME_LIBRARY_LINKAGE": "dynamic"
+			}
+		},
+		{
+			"name": "windows-clang-mingw-arm64-dynamic",
+			"inherits": [
+				"windows-clang-mingw-arm64-base"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "arm64-dynamic",
+				"RUNTIME_LIBRARY_LINKAGE": "dynamic"
+			}
+		},
+		{
+			"name": "windows-clang-mingw-arm64-static",
+			"inherits": [
+				"windows-clang-mingw-arm64-base"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "arm64-static",
+				"RUNTIME_LIBRARY_LINKAGE": "static"
+			}
+		},
+		{
+			"name": "windows-clang-mingw-arm64-static-md",
+			"inherits": [
+				"windows-clang-mingw-arm64-base"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "arm64-static-md",
+				"RUNTIME_LIBRARY_LINKAGE": "dynamic"
+			}
+		},
+		{
+			"name": "windows-clang-mingw-arm-dynamic",
+			"inherits": [
+				"windows-clang-mingw-arm-base"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "arm-dynamic",
+				"RUNTIME_LIBRARY_LINKAGE": "dynamic"
+			}
+		},
+		{
+			"name": "windows-clang-mingw-arm-static",
+			"inherits": [
+				"windows-clang-mingw-arm-base"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "arm-static",
+				"RUNTIME_LIBRARY_LINKAGE": "static"
+			}
+		},
+		{
+			"name": "windows-clang-mingw-arm-static-md",
+			"inherits": [
+				"windows-clang-mingw-arm-base"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "arm-static-md",
+				"RUNTIME_LIBRARY_LINKAGE": "dynamic"
+			}
+		}
+	]
+}

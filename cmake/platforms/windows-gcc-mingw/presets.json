@@ -1,0 +1,92 @@
+{
+	"version": 9,
+	"include": [
+		"../../presets/base-presets.json",
+		"../../presets/ext-arch-presets.json",
+		"../../presets/vendor-presets.json"
+	],
+	"configurePresets": [
+		{
+			"name": "windows-gcc-mingw-base",
+			"hidden": true,
+			"inherits": [
+				"vcpkg-base",
+				"vs-remote-settings",
+				"vs-settings"
+			],
+			"cacheVariables": {
+				"VCPKG_OVERLAY_TRIPLETS": "${sourceDir}/cmake/platforms/windows-gcc-mingw/triplets"
+			}
+		},
+		{
+			"name": "windows-gcc-mingw-x64-base",
+			"hidden": true,
+			"inherits": [
+				"windows-gcc-mingw-base",
+				"ext-arch-x64"
+			],
+			"cacheVariables": {
+				"VCPKG_CHAINLOAD_TOOLCHAIN_FILE": "${sourceDir}/cmake/platforms/windows-gcc-mingw/toolchains/x64.cmake"
+			}
+		},
+		{
+			"name": "windows-gcc-mingw-x86-base",
+			"hidden": true,
+			"inherits": [
+				"windows-gcc-mingw-base",
+				"ext-arch-x86"
+			],
+			"cacheVariables": {
+				"VCPKG_CHAINLOAD_TOOLCHAIN_FILE": "${sourceDir}/cmake/platforms/windows-gcc-mingw/toolchains/x86.cmake"
+			}
+		},
+		{
+			"name": "windows-gcc-mingw-x64-dynamic",
+			"inherits": [
+				"windows-gcc-mingw-x64-base"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "x64-mingw-dynamic",
+				"RUNTIME_LIBRARY_LINKAGE": "dynamic"
+			}
+		},
+		{
+			"name": "windows-gcc-mingw-x64-static",
+			"inherits": [
+				"windows-gcc-mingw-x64-base"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "x64-mingw-static",
+				"RUNTIME_LIBRARY_LINKAGE": "dynamic"
+			}
+		},
+		{
+			"name": "windows-gcc-mingw-x86-dynamic",
+			"inherits": [
+				"windows-gcc-mingw-x86-base"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "x86-mingw-dynamic",
+				"RUNTIME_LIBRARY_LINKAGE": "dynamic"
+			}
+		},
+		{
+			"name": "windows-gcc-mingw-x86-static",
+			"inherits": [
+				"windows-gcc-mingw-x86-base"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "x86-mingw-static",
+				"RUNTIME_LIBRARY_LINKAGE": "dynamic"
+			}
+		}
+	]
+}

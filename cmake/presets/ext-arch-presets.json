@@ -1,0 +1,45 @@
+{
+	"version": 9,
+	"configurePresets": [
+		{
+			"name": "ext-arch-x64",
+			"hidden": true,
+			"architecture": {
+				"value": "x64",
+				"strategy": "external"
+			}
+		},
+		{
+			"name": "ext-arch-x86",
+			"hidden": true,
+			"architecture": {
+				"value": "x86",
+				"strategy": "external"
+			}
+		},
+		{
+			"name": "ext-arch-win32",
+			"hidden": true,
+			"architecture": {
+				"value": "Win32",
+				"strategy": "external"
+			}
+		},
+		{
+			"name": "ext-arch-arm64",
+			"hidden": true,
+			"architecture": {
+				"value": "ARM64",
+				"strategy": "external"
+			}
+		},
+		{
+			"name": "ext-arch-arm",
+			"hidden": true,
+			"architecture": {
+				"value": "ARM",
+				"strategy": "external"
+			}
+		}
+	]
+}

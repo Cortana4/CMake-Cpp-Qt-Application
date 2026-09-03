@@ -1,0 +1,35 @@
+{
+	"version": 9,
+	"configurePresets": [
+		{
+			"name": "vs-remote-settings",
+			"hidden": true,
+			"vendor": {
+				"microsoft.com/VisualStudioRemoteSettings/CMake/1.0": {
+					"sourceDir": "$env{HOME}/.vs/$ms{projectDirName}",
+					"copySourcesOptions": {
+						"exclusionList": [
+							".git",
+							".github",
+							".vs",
+							"build",
+							"install",
+							"out"
+						]
+					}
+				}
+			}
+		},
+		{
+			"name": "vs-settings",
+			"hidden": true,
+			"vendor": {
+				"microsoft.com/VisualStudioSettings/CMake/1.0": {
+					"clangTidyChecks": "",
+					"enableMicrosoftCodeAnalysis": true,
+					"enableClangTidyCodeAnalysis": false
+				}
+			}
+		}
+	]
+}

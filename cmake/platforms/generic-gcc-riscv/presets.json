@@ -1,0 +1,17 @@
+{
+	"version": 9,
+	"include": [
+
+	],
+	"configurePresets": [
+		{
+			"name": "generic-gcc-riscv32",
+			"inherits": [
+
+			],
+			"toolchainFile": "${sourceDir}/cmake/platforms/generic-gcc-riscv/toolchains/riscv32.cmake",
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}"
+		}
+	]
+}

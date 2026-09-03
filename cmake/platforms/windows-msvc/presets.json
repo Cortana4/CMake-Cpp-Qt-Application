@@ -1,0 +1,203 @@
+{
+	"version": 9,
+	"include": [
+		"../../presets/base-presets.json",
+		"../../presets/ext-arch-presets.json",
+		"../../presets/vendor-presets.json"
+	],
+	"configurePresets": [
+		{
+			"name": "windows-msvc-base",
+			"hidden": true,
+			"inherits": [
+				"vcpkg-base",
+				"vs-remote-settings",
+				"vs-settings"
+			],
+			"condition": {
+				"type": "equals",
+				"lhs": "${hostSystemName}",
+				"rhs": "Windows"
+			},
+			"cacheVariables": {
+				"VCPKG_OVERLAY_TRIPLETS": "${sourceDir}/cmake/platforms/windows-msvc/triplets"
+			}
+		},
+		{
+			"name": "windows-msvc-x64-base",
+			"hidden": true,
+			"inherits": [
+				"windows-msvc-base",
+				"ext-arch-x64"
+			]
+		},
+		{
+			"name": "windows-msvc-x86-base",
+			"hidden": true,
+			"inherits": [
+				"windows-msvc-base",
+				"ext-arch-x86"
+			]
+		},
+		{
+			"name": "windows-msvc-arm64-base",
+			"hidden": true,
+			"inherits": [
+				"windows-msvc-base",
+				"ext-arch-arm64"
+			]
+		},
+		{
+			"name": "windows-msvc-arm-base",
+			"hidden": true,
+			"inherits": [
+				"windows-msvc-base",
+				"ext-arch-arm"
+			]
+		},
+		{
+			"name": "windows-msvc-x64-dynamic",
+			"inherits": [
+				"windows-msvc-x64-base"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "x64-windows",
+				"RUNTIME_LIBRARY_LINKAGE": "dynamic"
+			}
+		},
+		{
+			"name": "windows-msvc-x64-static",
+			"inherits": [
+				"windows-msvc-x64-base"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "x64-windows-static",
+				"RUNTIME_LIBRARY_LINKAGE": "static"
+			}
+		},
+		{
+			"name": "windows-msvc-x64-static-md",
+			"inherits": [
+				"windows-msvc-x64-base"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "x64-windows-static-md",
+				"RUNTIME_LIBRARY_LINKAGE": "dynamic"
+			}
+		},
+		{
+			"name": "windows-msvc-x86-dynamic",
+			"inherits": [
+				"windows-msvc-x86-base"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "x86-windows",
+				"RUNTIME_LIBRARY_LINKAGE": "dynamic"
+			}
+		},
+		{
+			"name": "windows-msvc-x86-static",
+			"inherits": [
+				"windows-msvc-x86-base"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "x86-windows-static",
+				"RUNTIME_LIBRARY_LINKAGE": "static"
+			}
+		},
+		{
+			"name": "windows-msvc-x86-static-md",
+			"inherits": [
+				"windows-msvc-x86-base"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "x86-windows-static-md",
+				"RUNTIME_LIBRARY_LINKAGE": "dynamic"
+			}
+		},
+		{
+			"name": "windows-msvc-arm64-dynamic",
+			"inherits": [
+				"windows-msvc-arm64-base"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "arm64-windows",
+				"RUNTIME_LIBRARY_LINKAGE": "dynamic"
+			}
+		},
+		{
+			"name": "windows-msvc-arm64-static",
+			"inherits": [
+				"windows-msvc-arm64-base"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "arm64-windows-static",
+				"RUNTIME_LIBRARY_LINKAGE": "static"
+			}
+		},
+		{
+			"name": "windows-msvc-arm64-static-md",
+			"inherits": [
+				"windows-msvc-arm64-base"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "arm64-windows-static-md",
+				"RUNTIME_LIBRARY_LINKAGE": "dynamic"
+			}
+		},
+		{
+			"name": "windows-msvc-arm-dynamic",
+			"inherits": [
+				"windows-msvc-arm-base"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "arm-windows",
+				"RUNTIME_LIBRARY_LINKAGE": "dynamic"
+			}
+		},
+		{
+			"name": "windows-msvc-arm-static",
+			"inherits": [
+				"windows-msvc-arm-base"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "arm-windows-static",
+				"RUNTIME_LIBRARY_LINKAGE": "static"
+			}
+		},
+		{
+			"name": "windows-msvc-arm-static-md",
+			"inherits": [
+				"windows-msvc-arm-base"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "arm-windows-static-md",
+				"RUNTIME_LIBRARY_LINKAGE": "dynamic"
+			}
+		}
+	]
+}

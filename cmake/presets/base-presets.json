@@ -1,0 +1,15 @@
+{
+	"version": 9,
+	"configurePresets": [
+		{
+			"name": "vcpkg-base",
+			"hidden": true,
+			"generator": "Ninja Multi-Config",
+			"toolchainFile": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+			"cacheVariables": {
+				"VCPKG_INSTALL_OPTIONS": "--clean-after-build",
+				"X_VCPKG_APPLOCAL_DEPS_INSTALL": "OFF"
+			}
+		}
+	]
+}

@@ -1,0 +1,210 @@
+{
+	"version": 9,
+	"include": [
+		"../../presets/base-presets.json",
+		"../../presets/ext-arch-presets.json",
+		"../../presets/vendor-presets.json"
+	],
+	"configurePresets": [
+		{
+			"name": "windows-clang-msvc-base",
+			"hidden": true,
+			"inherits": [
+				"vcpkg-base",
+				"vs-remote-settings",
+				"vs-settings"
+			],
+			"cacheVariables": {
+				"VCPKG_OVERLAY_TRIPLETS": "${sourceDir}/cmake/platforms/windows-clang-msvc/triplets"
+			}
+		},
+		{
+			"name": "windows-clang-msvc-x64-base",
+			"hidden": true,
+			"inherits": [
+				"windows-clang-msvc-base",
+				"ext-arch-x64"
+			],
+			"cacheVariables": {
+				"VCPKG_CHAINLOAD_TOOLCHAIN_FILE": "${sourceDir}/cmake/platforms/windows-clang-msvc/toolchains/x64.cmake"
+			}
+		},
+		{
+			"name": "windows-clang-msvc-x86-base",
+			"hidden": true,
+			"inherits": [
+				"windows-clang-msvc-base",
+				"ext-arch-x86"
+			],
+			"cacheVariables": {
+				"VCPKG_CHAINLOAD_TOOLCHAIN_FILE": "${sourceDir}/cmake/platforms/windows-clang-msvc/toolchains/x86.cmake"
+			}
+		},
+		{
+			"name": "windows-clang-msvc-arm64-base",
+			"hidden": true,
+			"inherits": [
+				"windows-clang-msvc-base",
+				"ext-arch-arm64"
+			],
+			"cacheVariables": {
+				"VCPKG_CHAINLOAD_TOOLCHAIN_FILE": "${sourceDir}/cmake/platforms/windows-clang-msvc/toolchains/arm64.cmake"
+			}
+		},
+		{
+			"name": "windows-clang-msvc-arm-base",
+			"hidden": true,
+			"inherits": [
+				"windows-clang-msvc-base",
+				"ext-arch-arm"
+			],
+			"cacheVariables": {
+				"VCPKG_CHAINLOAD_TOOLCHAIN_FILE": "${sourceDir}/cmake/platforms/windows-clang-msvc/toolchains/arm.cmake"
+			}
+		},
+		{
+			"name": "windows-clang-msvc-x64-dynamic",
+			"inherits": [
+				"windows-clang-msvc-x64-base"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "x64-dynamic",
+				"RUNTIME_LIBRARY_LINKAGE": "dynamic"
+			}
+		},
+		{
+			"name": "windows-clang-msvc-x64-static",
+			"inherits": [
+				"windows-clang-msvc-x64-base"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "x64-static",
+				"RUNTIME_LIBRARY_LINKAGE": "static"
+			}
+		},
+		{
+			"name": "windows-clang-msvc-x64-static-md",
+			"inherits": [
+				"windows-clang-msvc-x64-base"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "x64-static-md",
+				"RUNTIME_LIBRARY_LINKAGE": "dynamic"
+			}
+		},
+		{
+			"name": "windows-clang-msvc-x86-dynamic",
+			"inherits": [
+				"windows-clang-msvc-x86-base"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "x86-dynamic",
+				"RUNTIME_LIBRARY_LINKAGE": "dynamic"
+			}
+		},
+		{
+			"name": "windows-clang-msvc-x86-static",
+			"inherits": [
+				"windows-clang-msvc-x86-base"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "x86-static",
+				"RUNTIME_LIBRARY_LINKAGE": "static"
+			}
+		},
+		{
+			"name": "windows-clang-msvc-x86-static-md",
+			"inherits": [
+				"windows-clang-msvc-x86-base"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "x86-static-md",
+				"RUNTIME_LIBRARY_LINKAGE": "dynamic"
+			}
+		},
+		{
+			"name": "windows-clang-msvc-arm64-dynamic",
+			"inherits": [
+				"windows-clang-msvc-arm64-base"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "arm64-dynamic",
+				"RUNTIME_LIBRARY_LINKAGE": "dynamic"
+			}
+		},
+		{
+			"name": "windows-clang-msvc-arm64-static",
+			"inherits": [
+				"windows-clang-msvc-arm64-base"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "arm64-static",
+				"RUNTIME_LIBRARY_LINKAGE": "static"
+			}
+		},
+		{
+			"name": "windows-clang-msvc-arm64-static-md",
+			"inherits": [
+				"windows-clang-msvc-arm64-base"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "arm64-static-md",
+				"RUNTIME_LIBRARY_LINKAGE": "dynamic"
+			}
+		},
+		{
+			"name": "windows-clang-msvc-arm-dynamic",
+			"inherits": [
+				"windows-clang-msvc-arm-base"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "arm-dynamic",
+				"RUNTIME_LIBRARY_LINKAGE": "dynamic"
+			}
+		},
+		{
+			"name": "windows-clang-msvc-arm-static",
+			"inherits": [
+				"windows-clang-msvc-arm-base"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "arm-static",
+				"RUNTIME_LIBRARY_LINKAGE": "static"
+			}
+		},
+		{
+			"name": "windows-clang-msvc-arm-static-md",
+			"inherits": [
+				"windows-clang-msvc-arm-base"
+			],
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"installDir": "${sourceDir}/install/${presetName}",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "arm-static-md",
+				"RUNTIME_LIBRARY_LINKAGE": "dynamic"
+			}
+		}
+	]
+}
