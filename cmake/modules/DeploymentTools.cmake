@@ -89,6 +89,8 @@ qt_deploy_runtime_dependencies(
 endfunction()
 
 function(add_config_to_install_prefix)
+	## Make the configured cmake install prefix config aware, but don't add
+	## the config when overwritten with the --prefix option.
 	set(configured_install_prefix "${CMAKE_INSTALL_PREFIX}")
 	install(CODE "
 if(CMAKE_INSTALL_PREFIX STREQUAL \"${configured_install_prefix}\")
