@@ -54,7 +54,6 @@ function(install_qt_dependencies TARGET_NAME)
 			TARGET "${TARGET_NAME}"
 			OUTPUT_SCRIPT DEPLOY_SCRIPT
 			CONTENT "
-set(QT_DEPLOY_PREFIX \"\\\${QT_DEPLOY_PREFIX}/$<CONFIG>\")
 set(QT_DEPLOY_BIN_DIR \"bin\")
 set(QT_DEPLOY_LIB_DIR \"lib\")
 set(QT_DEPLOY_PLUGINS_DIR \"bin\")
@@ -73,24 +72,29 @@ qt_deploy_runtime_dependencies(
 			TARGET "${TARGET_NAME}"
 			OUTPUT_SCRIPT DEPLOY_SCRIPT
 			CONTENT "
-set(QT_DEPLOY_BIN_DIR \"$<CONFIG>/bin\")
-set(QT_DEPLOY_LIB_DIR \"$<CONFIG>/lib\")
-set(QT_DEPLOY_PLUGINS_DIR \"$<CONFIG>/Qt6/plugins\")
-set(QT_DEPLOY_QML_DIR \"$<CONFIG>/Qt6/qml\")
-set(QT_DEPLOY_TRANSLATIONS_DIR \"$<CONFIG>/Qt6/translations\")
+set(QT_DEPLOY_BIN_DIR \"bin\")
+set(QT_DEPLOY_LIB_DIR \"lib\")
+set(QT_DEPLOY_PLUGINS_DIR \"Qt6/plugins\")
+set(QT_DEPLOY_QML_DIR \"Qt6/qml\")
+set(QT_DEPLOY_TRANSLATIONS_DIR \"Qt6/translations\")
 
 qt_deploy_runtime_dependencies(
 	EXECUTABLE \"$<TARGET_FILE:${TARGET_NAME}>\"
-)
-qt_deploy_qt_conf(
-	\"\\\${QT_DEPLOY_PREFIX}/$<CONFIG>/bin/qt.conf\"
-	PREFIX \"..\"
-	PLUGINS_DIR \"Qt6/plugins\"
-	QML_DIR \"Qt6/qml\"
-	TRANSLATIONS_DIR \"Qt6/translations\"
+	GENERATE_QT_CONF
 )")
 	endif()
 	
 	## install Qt platform plugins etc. with the generated script
 	install(SCRIPT "${DEPLOY_SCRIPT}")
+endfunction()
+
+function(add_config_to_install_prefix)
+	set(configured_install_prefix "${CMAKE_INSTALL_PREFIX}")
+	install(CODE "
+if(CMAKE_INSTALL_PREFIX STREQUAL \"${configured_install_prefix}\")
+	set(CMAKE_INSTALL_PREFIX
+		\"\${CMAKE_INSTALL_PREFIX}/\${CMAKE_INSTALL_CONFIG_NAME}\"
+	)
+endif()
+")
 endfunction()
