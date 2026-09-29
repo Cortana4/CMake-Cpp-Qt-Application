@@ -27,19 +27,29 @@ function(add_post_build_symlink TARGET_NAME SRC_DIR DST_DIR)
 endfunction()
 
 function(add_post_build_qt_deployment TARGET_NAME)
-	## on windows, vcpkg does copy dependent .dll files to the build directory,
-	## but that does not include Qt platform plugins etc., so we have to run
-	## windeployqt after build in order to run the program from the build directory
+	## On windows, vcpkg does copy dependent .dll files to the build directory,
+	## but that does not include Qt platform plugins etc. So we have to run
+	## windeployqt after the build in order to run the program from the build
+	## directory.
 	if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
+		## Multiple targets may invoke windeployqt concurrently during a
+		## parallel build. Since they deploy into the same output directory,
+		## concurrent instances may try to modify the same DLLs and fail due
+		## to file locking on Windows. So we have to move the windeployqt
+		## invocation into a cmake script and serialize access via a lock file.
 		add_custom_command(TARGET "${TARGET_NAME}" POST_BUILD
-			COMMAND Qt6::windeployqt
-			ARGS "$<TARGET_FILE:${TARGET_NAME}>"
+			COMMAND "${CMAKE_COMMAND}"
+				"-DLOCK_FILE=${CMAKE_BINARY_DIR}/windeployqt.lock"
+				"-DWINDEPLOYQT=$<TARGET_FILE:Qt6::windeployqt>"
+				"-DTARGET_FILE=$<TARGET_FILE:${TARGET_NAME}>"
+				-P "${CMAKE_SOURCE_DIR}/cmake/modules/RunWinDeployQt.cmake"
+			VERBATIM
 		)
 	endif()
 	
-	## on linux, vcpkg sets the RPATH/RUNPATH, meaning that all dependent .so
+	## On linux, vcpkg sets the RPATH/RUNPATH, meaning that all dependent .so
 	## files are found in the vcpkg_installed directory, so no copy operation
-	## is needed
+	## is needed.
 endfunction()
 
 function(install_qt_dependencies TARGET_NAME)
